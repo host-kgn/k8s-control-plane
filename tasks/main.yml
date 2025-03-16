@@ -1,0 +1,17 @@
+- name: Cluster initialization
+  include_tasks: cluster-init.yml
+  when: inventory_hostname == groups['k8s_masters'][0]
+  run_once: yes
+
+- name: Install Utils
+  include_tasks: nodelocaldns.yml
+  when: inventory_hostname == groups['k8s_masters'][0]
+  run_once: yes
+
+- name: Prepare to join master-nodes
+  include_tasks: prepare-to-join.yml
+  when: inventory_hostname == groups['k8s_masters'][0]
+
+- name: Join other master-nodes
+  include_tasks: join.yml
+  when: inventory_hostname != groups['k8s_masters'][0]

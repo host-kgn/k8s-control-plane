@@ -1,0 +1,8 @@
+galaxy_info:
+  author: Leonid Petrov
+  description: Role for cluster initialization
+  license: license (GPL-2.0-or-later, MIT, etc)
+
+  min_ansible_version: 2.12
+  galaxy_tags: []
+dependencies: []
