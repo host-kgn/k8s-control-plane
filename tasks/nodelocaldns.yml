@@ -17,7 +17,7 @@
 
 - name: Copy nodelocaldns manifest
   template:
-    src: nodelocaldns-daemonset.j2
+    src: nodelocaldns-daemonset.yaml.j2
     dest: /etc/kubernetes/nodelocaldns-daemonset.yaml
 
 - name: Deploy nodelocaldns
