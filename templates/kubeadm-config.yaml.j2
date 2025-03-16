@@ -54,7 +54,7 @@ apiServer:
     bind-address: 0.0.0.0
     service-cluster-ip-range: {{ service_cidr }}
     service-node-port-range: 30000-32767
-kubernetesVersion: {{ kube_version }}.{{ kube_minor_version }}
+kubernetesVersion: {{ kube_version }}
 {% if ha_cluster_virtual_ip is defined and ha_cluster_virtual_ip != "" %}
 controlPlaneEndpoint: {{ ha_cluster_virtual_ip }}:{{ ha_cluster_virtual_port }}
 {% elif api_load_balancer_address is defined and api_load_balancer_address != "" %}
