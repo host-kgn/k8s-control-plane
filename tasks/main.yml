@@ -10,7 +10,7 @@
 
 - name: Prepare to join master-nodes
   include_tasks: prepare-to-join.yml
-  when: inventory_hostname == groups['k8s_masters'][0]
+  when: inventory_hostname == groups['k8s_masters'][0] and groups['k8s_masters'] | length > 1
 
 - name: Join other master-nodes
   include_tasks: join.yml
