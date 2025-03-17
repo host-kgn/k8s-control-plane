@@ -1,3 +1,8 @@
+- name: Copy kubeadm-config.yaml
+  template:
+    src: kubeadm-config.yaml.j2
+    dest: /etc/kubernetes/kubeadm-config_temp.yaml
+
 - name: Cluster initialization
   include_tasks: cluster-init.yml
   when: inventory_hostname == groups['k8s_masters'][0]
