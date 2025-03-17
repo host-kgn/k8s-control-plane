@@ -19,7 +19,7 @@ Default variables can be found in `defaults/main.yml`
 
 `service_cidr` - subnet for services <br>
 `pod_network_cidr` - subnet for pods
-> **Note**: The specific subnets depend on the CNI (Container Network Interface) plugin you use.
+> **Note:** The specific subnets depend on the CNI (Container Network Interface) plugin you use.
 
 ---
 
