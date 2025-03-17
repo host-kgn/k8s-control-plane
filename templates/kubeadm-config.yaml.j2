@@ -37,17 +37,17 @@ etcd:
 {% endif %}
 imageRepository: {{ imageRepository }}
 apiServer:
-  {% if (api_load_balancer_address is defined and api_load_balancer_address) or (certSANs is defined and certSANs) %}
+{% if (api_load_balancer_address is defined and api_load_balancer_address) or (certSANs is defined and certSANs) %}
   certSANs:
-    {% if api_load_balancer_address is defined and api_load_balancer_address %}
+{% if api_load_balancer_address is defined and api_load_balancer_address %}
     - {{ api_load_balancer_address }}
-    {% endif %}
-    {% if certSANs is defined and certSANs %}
-    {% for item in certSANs %}
+{% endif %}
+{% if certSANs is defined and certSANs %}
+{% for item in certSANs %}
     - {{ item }}
-    {% endfor %}
-    {% endif %}
-  {% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
   timeoutForControlPlane: 4m0s
   extraArgs:
     authorization-mode: Node,RBAC
