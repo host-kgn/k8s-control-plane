@@ -29,12 +29,7 @@ dns:
 etcd:
   local:
     dataDir: /var/lib/etcd
-{% if ha_cluster_virtual_ip is defined and ha_cluster_virtual_ip != "" %}
-    serverCertSANs:
-    - {{ ha_cluster_virtual_ip }}
-    peerCertSANs:
-    - {{ ha_cluster_virtual_ip }}
-{% elif api_load_balancer_address is defined and api_load_balancer_address != "" %}
+{% if api_load_balancer_address is defined and api_load_balancer_address != "" %}
     serverCertSANs:
     - {{ api_load_balancer_address }}
     peerCertSANs:
