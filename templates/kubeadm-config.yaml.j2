@@ -29,11 +29,11 @@ dns:
 etcd:
   local:
     dataDir: /var/lib/etcd
-{% if api_load_balancer_address is defined and api_load_balancer_address != "" %}
+{% if api_load_balancer_endpoint is defined and api_load_balancer_endpoint != "" %}
     serverCertSANs:
-    - {{ api_load_balancer_address }}
+    - {{ api_load_balancer_endpoint.split(':')[0] }} }}
     peerCertSANs:
-    - {{ api_load_balancer_address }}
+    - {{ api_load_balancer_endpoint.split(':')[0] }} }}
 {% endif %}
 imageRepository: {{ imageRepository }}
 apiServer:
@@ -50,10 +50,8 @@ apiServer:
     service-cluster-ip-range: {{ service_cidr }}
     service-node-port-range: 30000-32767
 kubernetesVersion: {{ kube_version }}
-{% if ha_cluster_virtual_ip is defined and ha_cluster_virtual_ip != "" %}
-controlPlaneEndpoint: {{ ha_cluster_virtual_ip }}:{{ ha_cluster_virtual_port }}
-{% elif api_load_balancer_address is defined and api_load_balancer_address != "" %}
-controlPlaneEndpoint: {{ api_load_balancer_address }}:{{ api_load_balancer_port }}
+{% if api_load_balancer_endpoint is defined and api_load_balancer_endpoint != "" %}
+controlPlaneEndpoint: {{ api_load_balancer_endpoint }}
 {% else %}
 controlPlaneEndpoint: {{ hostvars[groups['k8s_masters'][0]].ansible_facts.default_ipv4.address }}:6443
 {% endif %}
