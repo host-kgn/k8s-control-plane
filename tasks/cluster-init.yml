@@ -1,5 +1,4 @@
 ---
-# tasks file for master
 - name: Check if kubeadm has already run
   stat:
     path: "/etc/kubernetes/pki/ca.key"
