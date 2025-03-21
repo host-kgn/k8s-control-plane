@@ -1,0 +1,15 @@
+kube_domain_name: cluster.local
+# Kubelet configuration
+system_reserved: true
+system_memory_reserved: 512Mi
+system_cpu_reserved: 500m
+system_ephemeral_storage_reserved: 2Gi
+container_log_max_size: 1Mi
+container_log_max_files: 3
+kubectl_config: /etc/kubernetes/admin.conf
+kubeadmin_config: /etc/kubernetes/kubeadm.conf
+cri_socket: unix:///var/run/containerd/containerd.sock
+imageRepository: registry.k8s.io
+#NODE-LOCAL-DNS
+nodelocaldns_image: "registry.k8s.io/dns/k8s-dns-node-cache:1.22.23"
+nodelocaldns_local_ip: 169.254.25.10

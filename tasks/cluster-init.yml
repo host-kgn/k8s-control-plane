@@ -1,0 +1,39 @@
+---
+- name: Check if kubeadm has already run
+  stat:
+    path: "/etc/kubernetes/pki/ca.key"
+  register: kubeadm_ca
+
+- meta: end_play
+  when: kubeadm_ca.stat.exists
+
+- name: Create /etc/kubernetes directory
+  file:
+    path: /etc/kubernetes
+    state: directory
+
+- name: Copy kubeadm-config.yaml
+  template:
+    src: kubeadm-config.yaml.j2
+    dest: /etc/kubernetes/kubeadm-config.yaml
+
+- name: Init master control node
+  shell: kubeadm init --config /etc/kubernetes/kubeadm-config.yaml {{ kubeadm_init_parameters }}
+  register: kubeadm_init
+
+- name: Fetch admin kubeconfig
+  ansible.builtin.fetch:
+    src: /etc/kubernetes/admin.conf
+    dest: ./admin.conf
+    flat: yes
+
+- name: Add directory for config file
+  file:
+    path: /root/.kube
+    state: directory
+
+- name: Add link for config file
+  file:
+    src: /etc/kubernetes/admin.conf
+    dest: /root/.kube/config
+    state: link
