@@ -31,9 +31,9 @@ etcd:
     dataDir: /var/lib/etcd
 {% if api_load_balancer_endpoint is defined and api_load_balancer_endpoint != "" %}
     serverCertSANs:
-    - {{ api_load_balancer_endpoint.split(':')[0] }} }}
+    - {{ api_load_balancer_endpoint.split(':')[0] }}
     peerCertSANs:
-    - {{ api_load_balancer_endpoint.split(':')[0] }} }}
+    - {{ api_load_balancer_endpoint.split(':')[0] }}
 {% endif %}
 imageRepository: {{ imageRepository }}
 apiServer:
