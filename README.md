@@ -31,7 +31,7 @@ Default variables can be found in `defaults/main.yml`
 
 `service_cidr` - subnet for services <br>
 `pod_network_cidr` - subnet for pods <br>
-`api_load_balancer_endpoint` - endpoint of external loadbalncer for Kube-API. Used <br>
+`api_load_balancer_endpoint` - endpoint of external loadbalncer for Kube-API.<br>
 
 ### Inventory examples
 #### Multimaster
