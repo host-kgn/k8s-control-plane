@@ -40,7 +40,7 @@ apiServer:
 {% if (api_load_balancer_endpoint is defined and api_load_balancer_endpoint) or (certSANs is defined and certSANs) %}
   certSANs:
 {% if api_load_balancer_endpoint is defined and api_load_balancer_endpoint %}
-    - {{ api_load_balancer_endpoint.split(':')[0] }} }}
+    - {{ api_load_balancer_endpoint.split(':')[0] }}
 {% endif %}
 {% if certSANs is defined and certSANs %}
 {% for item in certSANs %}
